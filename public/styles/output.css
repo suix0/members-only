@@ -208,8 +208,14 @@
   .h-full {
     height: 100%;
   }
+  .w-fit {
+    width: fit-content;
+  }
   .border-collapse {
     border-collapse: collapse;
+  }
+  .cursor-pointer {
+    cursor: pointer;
   }
   .resize {
     resize: both;
