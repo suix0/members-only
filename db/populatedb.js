@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config({ path: "../.env" });
 const { Client } = require("pg");
 
 const SQL = `
@@ -8,8 +8,8 @@ const SQL = `
     last_name VARCHAR ( 255 ) NOT NULL,
     user_name VARCHAR ( 255 ) NOT NULL,
     password_hash VARCHAR ( 255 ) NOT NULL,
-    is_admin BOOL NOT NULL,
-    is_member BOOL NOT NULL
+    is_admin BOOL,
+    is_member BOOL
   );
 
   CREATE TABLE post (
@@ -23,8 +23,8 @@ const SQL = `
 `;
 
 const DROP = `
-  DROP TABLE users;
   DROP TABLE post;
+  DROP TABLE users;
 `;
 
 const main = async () => {

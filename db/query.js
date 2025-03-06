@@ -7,3 +7,14 @@ exports.getUsername = async (username) => {
   ]);
   return rows[0];
 };
+
+// POST: Post the newly registered user
+exports.postNewUser = async (user) => {
+  await db.query(
+    `
+    INSERT INTO users (first_name, last_name, user_name, password_hash)
+    VALUES ($1, $2, $3, $4)
+  `,
+    [user.firstname, user.lastname, user.username, user.password]
+  );
+};

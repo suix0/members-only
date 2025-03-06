@@ -40,11 +40,12 @@ exports.getRegisterForm = (req, res) => {
 
 exports.postRegisterForm = [
   validateUser,
-  (req, res) => {
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.render("register", { error: errors.array() });
     }
-    res.send(req.body);
+    await db.postNewUser(req.body);
+    res.redirect("/");
   },
 ];
