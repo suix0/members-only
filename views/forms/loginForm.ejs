@@ -23,4 +23,7 @@
     Don't have an account?
     <span><a href="/register" class="underline">Register now</a></span>
   </p>
+  <% if (locals.message) { %>
+   <p class="text-red-800"><%= locals.message %></p>
+  <% } %>
 </form>
