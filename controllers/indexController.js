@@ -12,8 +12,8 @@ const validateUser = [
     .notEmpty()
     .withMessage("Username can't be empty.")
     .custom(async (value) => {
-      const dbUser = await db.getUsername(username);
-      if (dbUser) {
+      const existingUser = await db.getUsername(value);
+      if (existingUser) {
         throw new Error("This user already exists.");
       }
     }),
@@ -23,11 +23,11 @@ const validateUser = [
     .withMessage("Password can't be empty.")
     .isLength({ min: 8 })
     .withMessage("Password must have a minimum of 8 characters"),
-  body("confirmPassword").custom((value, { req }) => {
-    if (value !== req.body.password) {
-      throw new Error("Confirm that your passwords match.");
-    }
-  }),
+  body("confirmPassword")
+    .custom((value, { req }) => {
+      return value === req.body.password;
+    })
+    .withMessage("Your passwords did not match. Please try again."),
 ];
 
 exports.getLandingPage = (req, res) => {
