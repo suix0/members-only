@@ -32,7 +32,10 @@ const validateUser = [
 ];
 
 exports.getLandingPage = (req, res) => {
-  res.render("landingPage");
+  res.render(
+    "landingPage",
+    req.session.messages && { message: req.session.messages[0] }
+  );
 };
 
 exports.getRegisterForm = (req, res) => {
