@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const db = require("../db/query");
 const { body, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
 
 // Custom validator to check if username already exists in our database
 
@@ -45,6 +46,7 @@ exports.postRegisterForm = [
     if (!errors.isEmpty()) {
       return res.render("register", { error: errors.array() });
     }
+    req.body.password = await bcrypt.hash(req.body.password, 10);
     await db.postNewUser(req.body);
     res.redirect("/");
   },

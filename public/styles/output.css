@@ -203,8 +203,14 @@
   .mb-24 {
     margin-bottom: calc(var(--spacing) * 24);
   }
+  .contents {
+    display: contents;
+  }
   .flex {
     display: flex;
+  }
+  .grid {
+    display: grid;
   }
   .table {
     display: table;
@@ -214,6 +220,12 @@
   }
   .w-fit {
     width: fit-content;
+  }
+  .flex-shrink {
+    flex-shrink: 1;
+  }
+  .shrink {
+    flex-shrink: 1;
   }
   .border-collapse {
     border-collapse: collapse;
