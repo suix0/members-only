@@ -1,0 +1,26 @@
+<form action="/log-in" method="post" class="flex flex-col border p-4 gap-4">
+  <label for="username">
+    <input
+      type="text"
+      id="username"
+      name="username"
+      placeholder="Username"
+      class="border p-2"
+    />
+  </label>
+  <label for="password">
+    <input
+      type="text"
+      id="password"
+      name="password"
+      placeholder="Password"
+      class="border p-2"
+    />
+  </label>
+  <button type="submit">Log in</button>
+  <hr />
+  <p>
+    Don't have an account?
+    <span><a href="/sign-in" class="underline">Sign in</a></span>
+  </p>
+</form>
