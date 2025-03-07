@@ -10,9 +10,9 @@ indexRouter.get("/register", indexController.getRegisterForm);
 indexRouter.get("/login", indexController.getLoginPage);
 indexRouter.get(
   "/becomeMember",
-  authMiddleware.isAuth,
-  authMiddleware.isNotMember,
-  indexController.getBecomeMember
+  authMiddleware.isAuth, // Check if user is authenticated
+  authMiddleware.isNotMember, // Check if user is not a member
+  indexController.getBecomeMember // Then open the get membership page
 );
 
 indexRouter.post("/register", indexController.postRegisterForm);
@@ -24,6 +24,6 @@ indexRouter.post(
     failureMessage: true,
   })
 );
-// indexRouter.post("/becomeMember", indexController.postMembership);
+indexRouter.post("/becomeMember", indexController.postMembership);
 
 module.exports = indexRouter;

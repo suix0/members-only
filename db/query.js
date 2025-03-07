@@ -29,3 +29,15 @@ exports.getIsMember = async (userId) => {
   );
   return rows;
 };
+
+// POST: Update membership status to true
+exports.updateMembership = async (userId, status) => {
+  await db.query(
+    `
+    UPDATE users
+    SET is_member = $2
+    WHERE user_id = $1  
+  `,
+    [userId, status]
+  );
+};

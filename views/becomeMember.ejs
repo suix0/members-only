@@ -12,7 +12,7 @@
     <form action="/becomeMember" method="post" >
       <p>What year was The Odin Project started?</p>
       <div>
-        <input type="radio" name="year" id="2014" value="2014">
+        <input type="radio" name="year" id="2014" value="2014" required>
         <label for="2014">2014</label>
       </div>
       <div>
@@ -25,13 +25,16 @@
       </div>
       <div>
         <input type="radio" name="year" id="2013" value="2013">
-        <label for="2013">2014</label>
+        <label for="2013">2013</label>
       </div>
       <div>
         <button type="submit">Submit</button> 
         <a>Maybe later...</a>
       </div>
     </form>
+    <% if (locals.errMessage) { %>
+     <p><%= locals.errMessage %></p>
+    <% } %>
   </div>
   <%- include('partials/footer') %>
 </body>
