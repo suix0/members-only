@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership</title>
+  <link rel="stylesheet" href="/styles/output.css">
+</head>
+<body class="relative">
+  <div class="flex flex-col justify-center items-center h-full gap-4">
+    <p>Answer the trivia question to become a <span>member!</span></p>
+    <form action="/becomeMember" method="post" >
+      <p>What year was The Odin Project started?</p>
+      <div>
+        <input type="radio" name="year" id="2014" value="2014">
+        <label for="2014">2014</label>
+      </div>
+      <div>
+      <div>
+        <input type="radio" name="year" id="2015" value="2015">
+        <label for="2015">2015</label>
+      </div>
+        <input type="radio" name="year" id="2012" value="2012">
+        <label for="2012">2012</label>
+      </div>
+      <div>
+        <input type="radio" name="year" id="2013" value="2013">
+        <label for="2013">2014</label>
+      </div>
+      <div>
+        <button type="submit">Submit</button> 
+        <a>Maybe later...</a>
+      </div>
+    </form>
+  </div>
+  <%- include('partials/footer') %>
+</body>
+</html>

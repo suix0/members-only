@@ -32,14 +32,18 @@ const validateUser = [
 ];
 
 exports.getLandingPage = (req, res) => {
-  res.render(
-    "landingPage",
-    req.session.messages && { message: req.session.messages[0] }
-  );
+  res.render("landingPage", {
+    isLanding: true,
+    message: req.session.messages ? req.session.messages[0] : "",
+  });
 };
 
 exports.getRegisterForm = (req, res) => {
   res.render("register");
+};
+
+exports.getLoginPage = (req, res) => {
+  res.render("login");
 };
 
 exports.postRegisterForm = [
@@ -51,6 +55,11 @@ exports.postRegisterForm = [
     }
     req.body.password = await bcrypt.hash(req.body.password, 10);
     await db.postNewUser(req.body);
-    res.redirect("/");
+
+    res.redirect("/login");
   },
 ];
+
+exports.getBecomeMember = (req, res) => {
+  res.render("becomeMember");
+};

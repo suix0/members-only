@@ -18,3 +18,14 @@ exports.postNewUser = async (user) => {
     [user.firstname, user.lastname, user.username, user.password]
   );
 };
+
+// GET: Is the user a member or not
+exports.getIsMember = async (userId) => {
+  const { rows } = await db.query(
+    `
+    SELECT * FROM users WHERE user_id = $1   
+  `,
+    [userId]
+  );
+  return rows;
+};
