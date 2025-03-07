@@ -179,11 +179,38 @@
   .left-0 {
     left: calc(var(--spacing) * 0);
   }
+  .col-span-4 {
+    grid-column: span 4 / span 4;
+  }
+  .col-start-1 {
+    grid-column-start: 1;
+  }
+  .col-start-2 {
+    grid-column-start: 2;
+  }
+  .col-start-3 {
+    grid-column-start: 3;
+  }
+  .col-end-3 {
+    grid-column-end: 3;
+  }
+  .col-end-4 {
+    grid-column-end: 4;
+  }
+  .row-start-1 {
+    grid-row-start: 1;
+  }
   .mb-20 {
     margin-bottom: calc(var(--spacing) * 20);
   }
   .flex {
     display: flex;
+  }
+  .grid {
+    display: grid;
+  }
+  .table {
+    display: table;
   }
   .h-full {
     height: 100%;
@@ -191,8 +218,20 @@
   .w-fit {
     width: fit-content;
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .resize {
+    resize: both;
+  }
+  .grid-cols-\[1fr_3fr_1fr\] {
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+  .grid-rows-\[50px_1fr\] {
+    grid-template-rows: 50px 1fr;
   }
   .flex-col {
     flex-direction: column;
@@ -225,6 +264,10 @@
   .underline {
     text-decoration-line: underline;
   }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
 }
 * {
   box-sizing: border-box;
@@ -233,6 +276,11 @@ body {
   height: 100svh;
 }
 @property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-outline-style {
   syntax: "*";
   inherits: false;
   initial-value: solid;

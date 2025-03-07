@@ -20,10 +20,11 @@ indexRouter.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/becomeMember",
-    failureRedirect: "/",
+    failureRedirect: "/", // Change for separate login page
     failureMessage: true,
   })
 );
 indexRouter.post("/becomeMember", indexController.postMembership);
+indexRouter.get("/logout", indexController.getLogout);
 
 module.exports = indexRouter;

@@ -68,9 +68,19 @@ exports.postMembership = async (req, res) => {
   if (req.body.year === "2013") {
     // Update user membership to true
     await db.updateMembership(req.user.user_id, true);
+    res.redirect("/home");
   } else {
     res.render("becomeMember", {
       errMessage: "That's not quite right. Try again!",
     });
   }
+};
+
+exports.getLogout = (req, res, next) => {
+  req.logOut((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
 };
