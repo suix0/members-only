@@ -7,12 +7,14 @@ const validatePost = [
 ];
 
 exports.getHomepage = async (req, res) => {
-  console.log(req.user);
   const userPosts = await db.getUserposts();
+  const users = await db.getUsers();
   res.render("home/home", {
     user: req.user,
     userPosts: userPosts.length > 0 ? userPosts : null,
     isMember: req.user.is_member,
+    isAdmin: req.user.is_admin,
+    users: users,
   });
 };
 
@@ -31,3 +33,14 @@ exports.postUserpost = [
     res.redirect("/home");
   },
 ];
+
+exports.postBecomeAdmin = async (req, res) => {
+  await db.postBecomeAdmin(req.user.user_id);
+  res.redirect("/home");
+};
+
+exports.getDeletePost = async (req, res) => {
+  const postId = Number(req.params.postId);
+  await db.deletePost(postId);
+  res.redirect("/home");
+};
