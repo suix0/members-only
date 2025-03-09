@@ -19,6 +19,48 @@
     </div>
   </div>
 
+  <%# Add admin panel %>
+  <% if (locals.isAdmin) { %>
+    <section class="row-start-3 w-[80%] justify-self-center rounded-lg flex flex-col gap-2">
+      <div class="bg-gray-700 text-gray-300 rounded-lg p-4 flex justify-between">
+        <p>Total users:</p>
+        <p><%= users.length%></p>
+      </div>
+      <div class="bg-gray-700 text-gray-300 rounded-lg p-4 flex justify-between">
+        <p>Total posts:</p>
+        <p><%= userPosts.length %></p>
+      </div>
+      <div class="bg-gray-700 text-gray-300 rounded-lg p-4">
+        <table class="w-full">
+          <caption class="text-lg">Users</caption>
+          <tr class="text-left border-b">
+            <th>Name</th>
+            <th>Username</th>
+            <th>Is Member</th>
+            <th>Is Admin</th>
+          </tr>
+          <% users.forEach(user => { %>
+           <tr>
+            <td class="pb-1"><%= user.first_name %> <%= user.last_name %></td>
+            <td><%= user.user_name %></td>
+            <% if (user.is_member) { %>
+              <td><%= user.is_member %></td>
+            <% } else {%>
+              <td>false</td>
+            <% } %>
+            <% if (user.is_admin) { %>
+              <td><%= user.is_admin %></td>
+            <% } else {%>
+              <td>false</td>
+            <% } %>
+           </tr>
+          <% }) %>
+        </table>
+      </div>
+    </section>
+    
+  <% } %>
+
   <dialog class="m-auto" id="post">
     <form action="/home/post" method="post" class="flex flex-col p-4 gap-4 items-center">
       <p>Create post</p>
@@ -50,11 +92,6 @@
       </div>
     </form>
     <% } %>
-  </dialog>
-
-  <%# Dialog notification for becoming admin %>
-  <dialog id="adminNotif">
-    <p>You now have admin authority.</p>
   </dialog>
   <%- include('../partials/footer') %>
   <script>

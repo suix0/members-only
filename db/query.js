@@ -61,6 +61,14 @@ exports.getUserposts = async () => {
   return rows;
 };
 
+// GET: Get users;
+exports.getUsers = async () => {
+  const { rows } = await db.query(`
+    SELECT * FROM users;  
+  `);
+  return rows;
+};
+
 // POST: Update admin status of user
 exports.postBecomeAdmin = async (userId) => {
   await db.query(
