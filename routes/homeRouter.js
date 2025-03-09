@@ -6,4 +6,5 @@ const homeRouter = Router();
 
 homeRouter.get("/", authMiddleware.isAuth, homeController.getHomepage);
 
+homeRouter.post("/post", authMiddleware.isAuth, homeController.postUserpost);
 module.exports = homeRouter;

@@ -51,7 +51,7 @@ exports.postRegisterForm = [
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.render("register", { error: errors.array() });
+      return res.render("register", { errors: errors.array() });
     }
     req.body.password = await bcrypt.hash(req.body.password, 10);
     await db.postNewUser(req.body);

@@ -6,13 +6,54 @@
   <title>Home</title>
   <link rel="stylesheet" href="/styles/output.css">
 </head>
-<body class="relative grid grid-cols-[1fr_3fr_1fr] grid-rows-[50px_1fr]">
+<body class="relative grid grid-cols-[2fr_2fr_2fr] grid-rows-[50px_10px_1fr]">
   <%- include('../partials/header') %>
-  <div class="flex flex-col items-center col-start-2 col-end-3">
-    <div>
-      <span>What's on your mind, <%= user.first_name %>?</span>
+  <div class="flex flex-col items-center col-start-2 col-end-3 gap-2 row-start-3">
+    <div class="w-full bg-gray-700 p-6 pb-4 pt-4 rounded-lg">
+      <p class="w-full bg-neutral-800 p-4 rounded-full hover:bg-neutral-700 cursor-pointer text-gray-300" id="triggerDialog" title="Click to create post">What's on your mind, <%= user.first_name %>?</p>
+    </div>
+
+    <%# Message posts feed %>
+    <div class="w-full h-full bg-gray-700 p-6 rounded-lg flex flex-col gap-4 overflow-auto">
+      <%- include('posts') %>
     </div>
   </div>
+
+
+  <dialog class="m-auto">
+    <form action="/home/post" method="post" class="flex flex-col p-4 gap-4 items-center">
+      <p>Create post</p>
+      <hr class="w-full">
+      <label for="title" class="w-full">
+        <input type="text" name="title" id="title" placeholder="Title" class="p-2" required>
+      </label>
+      <label for="content" class="w-full">
+        <textarea name="content" id="content" placeholder="What's on your mind, <%= user.first_name %>?" class="w-full p-2"></textarea>
+      </label>
+      <button id="cancel">Cancel</button>
+      <button type="submit">Post</button>
+      <%- include('../errors/error') %>
+    </form>
+  </dialog>
   <%- include('../partials/footer') %>
+  <script>
+    // Open a dialog with form for post creation upon clicking
+    const dialog = document.querySelector("dialog");
+    if ("<%= locals.openDialog %>") {
+      dialog.showModal();
+    } 
+
+    const triggerDialog = document.querySelector("#triggerDialog");
+    const cancelBtn = document.querySelector("#cancel");
+
+    triggerDialog.addEventListener("click", () => {
+      dialog.showModal();
+    })
+
+    cancelBtn.addEventListener("click", () => {
+      dialog.close();
+    })
+    // What's on your mind
+  </script>
 </body>
 </html>
