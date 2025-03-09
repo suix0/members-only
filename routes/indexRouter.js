@@ -19,7 +19,7 @@ indexRouter.post("/register", indexController.postRegisterForm);
 indexRouter.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/becomeMember",
+    successRedirect: "/home",
     failureRedirect: "/", // Change for separate login page
     failureMessage: true,
   })
