@@ -13,6 +13,7 @@ exports.getHomepage = async (req, res) => {
     user: req.user,
     userPosts: userPosts.length > 0 ? userPosts : null,
     isMember: req.user.is_member,
+    isAdmin: req.user.is_admin,
   });
 };
 
@@ -31,3 +32,8 @@ exports.postUserpost = [
     res.redirect("/home");
   },
 ];
+
+exports.postBecomeAdmin = async (req, res) => {
+  await db.postBecomeAdmin(req.user.user_id);
+  res.redirect("/home");
+};

@@ -53,9 +53,22 @@ exports.uploadPost = async (content, userId) => {
   );
 };
 
+// GET: Get all user posts
 exports.getUserposts = async () => {
   const { rows } = await db.query(`
     SELECT * FROM users INNER JOIN post ON users.user_id = post.user_id ORDER BY post.date_added DESC
   `);
   return rows;
+};
+
+// POST: Update admin status of user
+exports.postBecomeAdmin = async (userId) => {
+  await db.query(
+    `
+    UPDATE users
+    SET is_admin = true
+    WHERE user_id = $1  
+  `,
+    [userId]
+  );
 };
