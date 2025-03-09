@@ -41,3 +41,21 @@ exports.updateMembership = async (userId, status) => {
     [userId, status]
   );
 };
+
+// POST: Post the user message post
+exports.uploadPost = async (content, userId) => {
+  await db.query(
+    `
+    INSERT INTO post (user_id, title, content)
+    VALUES ($1, $2, $3)
+  `,
+    [userId, content.title, content.content]
+  );
+};
+
+exports.getUserposts = async () => {
+  const { rows } = await db.query(`
+    SELECT * FROM users INNER JOIN post ON users.user_id = post.user_id ORDER BY post.date_added DESC
+  `);
+  return rows;
+};

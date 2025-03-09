@@ -1,0 +1,16 @@
+<% if (locals.userPosts !== null) { %>
+ <% userPosts.forEach(post => { %>
+  <div class="bg-gray-600 rounded-lg p-4 text-neutral-300 flex flex-col gap-2">
+    <p class="font-semibold"><%= post.first_name %> <%= post.last_name %></p>
+    <div class="flex flex-col gap-2">
+      <hr>
+      <p class="italic text-xl  "><%= post.title %></p>
+      <p class="h-fit pt-2 break-words text-lg"><%= post.content %></p>
+      <hr>
+    </div>
+    <p>Added on <%= post.date_added %></p>
+  </div>
+ <% }) %>
+<% } else { %>
+  <p class="text-center text-neutral-300">No posts yet. Be the first!</p>
+<% } %>

@@ -12,10 +12,8 @@ exports.isAuth = (req, res, next) => {
 exports.isNotMember = async (req, res, next) => {
   const user = await db.getIsMember(req.user.user_id);
   if (user[0].is_member) {
-    // TODO: Replace it by redirecting directly to
-    // Home page of authorized users (posts feed)
-    return res.send("You are already a member");
+    res.redirect("/home");
   } else {
-    next(); // Redirect to membership page
+    next(); // Redirect to membership registration page
   }
 };
