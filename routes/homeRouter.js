@@ -14,4 +14,11 @@ homeRouter.post(
   homeController.postBecomeAdmin
 );
 
+homeRouter.get(
+  "/delete/:postId",
+  authMiddleware.isAuth,
+  authMiddleware.isAdmin,
+  homeController.getDeletePost
+);
+
 module.exports = homeRouter;

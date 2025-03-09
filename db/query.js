@@ -80,3 +80,13 @@ exports.postBecomeAdmin = async (userId) => {
     [userId]
   );
 };
+
+// GET: Delete a post
+exports.deletePost = async (postId) => {
+  await db.query(
+    `DELETE FROM post
+    WHERE post_id = $1
+    `,
+    [postId]
+  );
+};

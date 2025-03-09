@@ -38,3 +38,9 @@ exports.postBecomeAdmin = async (req, res) => {
   await db.postBecomeAdmin(req.user.user_id);
   res.redirect("/home");
 };
+
+exports.getDeletePost = async (req, res) => {
+  const postId = Number(req.params.postId);
+  await db.deletePost(postId);
+  res.redirect("/home");
+};

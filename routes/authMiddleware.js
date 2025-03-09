@@ -17,3 +17,11 @@ exports.isNotMember = async (req, res, next) => {
     next(); // Redirect to membership registration page
   }
 };
+
+exports.isAdmin = (req, res, next) => {
+  if (req.user.is_admin) {
+    next();
+  } else {
+    res.send("Not authorized");
+  }
+};
