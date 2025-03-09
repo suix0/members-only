@@ -12,7 +12,7 @@ exports.isAuth = (req, res, next) => {
 exports.isNotMember = async (req, res, next) => {
   const user = await db.getIsMember(req.user.user_id);
   if (user[0].is_member) {
-    res.redirect("/home");
+    res.render("becomeMember", { isMember: true });
   } else {
     next(); // Redirect to membership registration page
   }
