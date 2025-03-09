@@ -7,10 +7,12 @@ const validatePost = [
 ];
 
 exports.getHomepage = async (req, res) => {
+  console.log(req.user);
   const userPosts = await db.getUserposts();
   res.render("home/home", {
     user: req.user,
     userPosts: userPosts.length > 0 ? userPosts : null,
+    isMember: req.user.is_member,
   });
 };
 
