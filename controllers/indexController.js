@@ -38,7 +38,9 @@ exports.getLandingPage = (req, res) => {
 
   res.render("landingPage", {
     isLanding: true,
-    message: req.session.messages ? req.session.messages[0] : "",
+    message: req.session.messages
+      ? req.session.messages[req.session.messages.length - 1] // get latest error
+      : "",
   });
 };
 

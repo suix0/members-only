@@ -9,7 +9,7 @@
       id="firstname"
       name="firstname"
       placeholder="First name"
-      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg"
+      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg w-full"
       required
     />
   </label>
@@ -19,7 +19,7 @@
       id="lastname"
       name="lastname"
       placeholder="Last name"
-      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg"
+      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg w-full"
       required
     />
   </label>
@@ -29,7 +29,7 @@
       id="username"
       name="username"
       placeholder="Username"
-      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg"
+      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg w-full"
       required
     />
   </label>
@@ -39,7 +39,7 @@
       id="password"
       name="password"
       placeholder="Password"
-      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg"
+      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg w-full"
       required
     />
   </label>
@@ -49,9 +49,10 @@
       id="confirmPassword"
       name="confirmPassword"
       placeholder="Confirm password"
-      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg"
+      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg w-full"
       required
     />
   </label>
   <button type="submit" class="cursor-pointer bg-blue-500 p-2 rounded-lg">Sign up!</button>
+  <%- include('../errors/error') %>
 </form>
