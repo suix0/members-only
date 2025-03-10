@@ -61,18 +61,18 @@
     
   <% } %>
 
-  <dialog class="m-auto" id="post">
+  <dialog class="m-auto rounded-lg bg-gray-700 text-neutral-300" id="post">
     <form action="/home/post" method="post" class="flex flex-col p-4 gap-4 items-center">
       <p>Create post</p>
       <hr class="w-full">
       <label for="title" class="w-full">
-        <input type="text" name="title" id="title" placeholder="Title" class="p-2" required>
+        <input type="text" name="title" id="title" placeholder="Title" class="p-2 bg-gray-600 text-neutral-300 rounded-lg" required>
       </label>
       <label for="content" class="w-full">
-        <textarea name="content" id="content" placeholder="What's on your mind, <%= user.first_name %>?" class="w-full p-2"></textarea>
+        <textarea name="content" id="content" placeholder="What's on your mind, <%= user.first_name %>?" class="w-full p-2 bg-gray-600 text-neutral-300 rounded-lg"></textarea>
       </label>
-      <button id="cancel">Cancel</button>
-      <button type="submit">Post</button>
+      <button type="submit" class="cursor-pointer bg-blue-500 p-2 rounded-lg w-full">Post</button>
+      <button id="cancel" class="cursor-pointer p-2 rounded-lg w-full border">Cancel</button>
       <%- include('../errors/error') %>
     </form>
   </dialog>

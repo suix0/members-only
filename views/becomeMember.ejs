@@ -6,24 +6,24 @@
   <title>Membership</title>
   <link rel="stylesheet" href="/styles/output.css">
 </head>
-<body class="relative">
-  <div class="flex flex-col justify-center items-center h-full gap-4">
+<body class="relative flex flex-col justify-center items-center">
+  <div class="flex flex-col justify-center items-center gap-4 bg-gray-700 w-fit text-neutral-300 p-4 rounded-lg">
     <% if (locals.isMember) { %>
       <p>It seems that you are already a member!</p>
-      <a href="/home">Return</a>
+      <a href="/home" class="underline">Return</a>
     <% } else { %>
       <p>Answer the trivia question to become a <span>member!</span></p>
-      <form action="/becomeMember" method="post" >
+      <form action="/becomeMember" method="post" class="flex flex-col w-full">
         <p>What year was The Odin Project started?</p>
         <div>
           <input type="radio" name="year" id="2014" value="2014" required>
           <label for="2014">2014</label>
         </div>
         <div>
-        <div>
           <input type="radio" name="year" id="2015" value="2015">
           <label for="2015">2015</label>
         </div>
+        <div>
           <input type="radio" name="year" id="2012" value="2012">
           <label for="2012">2012</label>
         </div>
@@ -31,9 +31,9 @@
           <input type="radio" name="year" id="2013" value="2013">
           <label for="2013">2013</label>
         </div>
-        <div>
-          <button type="submit">Submit</button> 
-          <a href="/home">Maybe later...</a>
+        <div class="flex flex-col gap-4 mt-4">
+          <button type="submit" class="cursor-pointer bg-blue-500 p-2 rounded-lg">Submit</button> 
+          <a href="/home" class="text-center border p-2 rounded-lg">Maybe later...</a>
         </div>
       </form>
       <% if (locals.errMessage) { %>
@@ -41,6 +41,8 @@
       <% } %>
     <% } %>
   </div>
-  <%- include('partials/footer') %>
+  <div class="absolute bottom-0">
+    <%- include('partials/footer') %>
+  </div>
 </body>
 </html>
