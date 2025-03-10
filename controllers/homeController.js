@@ -11,7 +11,7 @@ exports.getHomepage = async (req, res) => {
   const users = await db.getUsers();
   res.render("home/home", {
     user: req.user,
-    userPosts: userPosts.length > 0 ? userPosts : null,
+    userPosts: userPosts && userPosts.length > 0 ? userPosts : null,
     isMember: req.user.is_member,
     isAdmin: req.user.is_admin,
     users: users,

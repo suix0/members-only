@@ -4,8 +4,7 @@ exports.isAuth = (req, res, next) => {
   if (req.user) {
     next();
   } else {
-    res.send("Not authorized");
-    // throw new Error("You are not authorized to view this page.");
+    throw new Error("You are not authorized to view this page");
   }
 };
 
@@ -22,6 +21,6 @@ exports.isAdmin = (req, res, next) => {
   if (req.user.is_admin) {
     next();
   } else {
-    res.send("Not authorized");
+    throw new Error("You are not authorized to perform this action");
   }
 };

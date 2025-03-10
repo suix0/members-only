@@ -24,11 +24,19 @@
     <section class="row-start-3 w-[80%] justify-self-center rounded-lg flex flex-col gap-2">
       <div class="bg-gray-700 text-gray-300 rounded-lg p-4 flex justify-between">
         <p>Total users:</p>
-        <p><%= users.length%></p>
+        <% if (users !== null) { %>
+          <p><%= users.length%></p>
+        <% } else {%>
+          <p>0</p>
+        <% } %>
       </div>
       <div class="bg-gray-700 text-gray-300 rounded-lg p-4 flex justify-between">
         <p>Total posts:</p>
-        <p><%= userPosts.length %></p>
+        <% if (userPosts !== null) { %>
+          <p><%= userPosts.length %></p>
+        <% } else {%>
+          <p>0</p>
+        <% } %>
       </div>
       <div class="bg-gray-700 text-gray-300 rounded-lg p-4">
         <table class="w-full">
