@@ -1,6 +1,6 @@
 <% if (locals.userPosts !== null) { %>
  <% userPosts.forEach(post => { %>
-  <div class="bg-gray-600 rounded-lg p-4 text-neutral-300 flex flex-col gap-2 relative">
+  <div class="bg-gray-600 rounded-lg p-4 text-neutral-300 flex flex-col gap-2 relative max-[650px]:p-2 max-[650px]:text-xs">
     <% if (locals.isAdmin) { %>
      <a href="/home/delete/<%= post.post_id %>">
       <img src="/svg/trash.svg" alt="Trash delete ppost icon" title="Delete post" class="w-[30px] absolute right-0 mr-2">

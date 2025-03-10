@@ -44,3 +44,15 @@ exports.getDeletePost = async (req, res) => {
   await db.deletePost(postId);
   res.redirect("/home");
 };
+
+exports.getAdminDashboard = async (req, res) => {
+  const userPosts = await db.getUserposts();
+  const users = await db.getUsers();
+  res.render("home/adminDashboard", {
+    user: req.user,
+    userPosts: userPosts && userPosts.length > 0 ? userPosts : null,
+    isMember: req.user.is_member,
+    isAdmin: req.user.is_admin,
+    users: users,
+  });
+};

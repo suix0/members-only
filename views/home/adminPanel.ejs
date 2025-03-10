@@ -1,0 +1,43 @@
+<div class="bg-gray-700 text-gray-300 rounded-lg p-4 flex justify-between w-full">
+  <p>Total users:</p>
+  <% if (locals.users !== null) { %>
+    <p><%= locals.users.length%></p>
+  <% } else {%>
+    <p>0</p>
+  <% } %>
+</div>
+<div class="bg-gray-700 text-gray-300 rounded-lg p-4 flex justify-between w-full">
+  <p>Total posts:</p>
+  <% if (locals.userPosts !== null) { %>
+    <p><%= locals.userPosts.length %></p>
+  <% } else {%>
+    <p>0</p>
+  <% } %>
+</div>
+<div class="bg-gray-700 text-gray-300 rounded-lg p-4 w-full">
+  <table class="w-full">
+    <caption class="text-lg">Users</caption>
+    <tr class="text-left border-b">
+      <th>Name</th>
+      <th>Username</th>
+      <th>Is Member</th>
+      <th>Is Admin</th>
+    </tr>
+    <% users.forEach(user => { %>
+      <tr>
+      <td class="pb-1"><%= user.first_name %> <%= user.last_name %></td>
+      <td><%= user.user_name %></td>
+      <% if (user.is_member) { %>
+        <td><%= user.is_member %></td>
+      <% } else {%>
+        <td>false</td>
+      <% } %>
+      <% if (user.is_admin) { %>
+        <td><%= user.is_admin %></td>
+      <% } else {%>
+        <td>false</td>
+      <% } %>
+      </tr>
+    <% }) %>
+  </table>
+</div>
