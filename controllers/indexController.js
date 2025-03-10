@@ -32,6 +32,10 @@ const validateUser = [
 ];
 
 exports.getLandingPage = (req, res) => {
+  if (req.user) {
+    return res.redirect("/home");
+  }
+
   res.render("landingPage", {
     isLanding: true,
     message: req.session.messages ? req.session.messages[0] : "",

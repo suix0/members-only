@@ -1,11 +1,11 @@
-<form action="/login" method="post" class="flex flex-col border p-4 gap-4">
+<form action="/login" method="post" class="flex flex-col border p-6 rounded-lg gap-4 bg-gray-700">
   <label for="username">
     <input
       type="text"
       id="username"
       name="username"
       placeholder="Username"
-      class="border p-2"
+      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg"
       required
     />
   </label>
@@ -15,14 +15,14 @@
       id="password"
       name="password"
       placeholder="Password"
-      class="border p-2"
+      class="border p-2 bg-neutral-300 text-gray-900 rounded-lg"
       required
     />
   </label>
-  <button type="submit" class="cursor-pointer">Log in</button>
+  <button type="submit" class="cursor-pointer bg-blue-500 p-2 rounded-lg">Log in</button>
   <% if (locals.isLanding) { %>
     <hr />
-    <p>
+    <p class="text-neutral-300">
       Don't have an account?
       <span><a href="/register" class="underline">Register now</a></span>
     </p>
