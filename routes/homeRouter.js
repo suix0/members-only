@@ -21,4 +21,6 @@ homeRouter.get(
   homeController.getDeletePost
 );
 
+homeRouter.get("/adminDashboard", homeController.getAdminDashboard);
+
 module.exports = homeRouter;

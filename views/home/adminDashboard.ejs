@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/styles/output.css">
+</head>
+<body class="grid relative grid-cols-[1fr_600px_1fr] max-[932px]:grid-cols-[1fr_500px_1fr] max-[540px]:grid-cols-[1fr_350px_1fr] grid-rows-[50px_10px_1fr]">
+  <%- include('../partials/header') %>
+  <main class="col-start-2 col-end-3 row-start-3 flex flex-col justify-start items-center gap-2">
+    <%- include('adminPanel') %>
+    <a href="/home" class="underline text-neutral-300 text-2xl">Return</a> 
+  </main>
+  <div class="absolute bottom-0 w-full flex justify-center">
+    <%- include('../partials/footer') %>
+  </div>
+  <script>
+    const nav = document.querySelector("nav");
+    const navList = document.querySelector("#navList");
+    const hamburgerMenu = document.querySelector("#hamburgerMenu");
+    const closeHamburgerMenu = document.querySelector("#closeHamburgerMenu");
+
+    const navHamburgerStyles = () => {
+      if (window.innerWidth <= 650) {
+        nav.style.visibility = "hidden"
+        nav.style.position = 'absolute'
+        nav.style.right = '0';
+        nav.style.top = '0'
+        nav.style.marginTop = "2.5rem"
+        nav.style.padding = "1rem"
+        nav.style.backgroundColor = 'rgb(34, 40, 49)';
+        nav.style.borderTopLeftRadius = "8px"
+        nav.style.borderBottomLeftRadius = "8px"
+        nav.style.translate = '200px';
+        nav.style.transition = "200ms ease-out translate"
+        navList.style.flexDirection = "column";
+        hamburgerMenu.addEventListener("click", () => {
+          nav.style.visibility = 'visible'
+          nav.style.translate = '0';
+        })
+      } else {
+        nav.style.visibility = "visible";
+        nav.style.position = 'unset'
+        nav.style.right = 'unset';
+        nav.style.top = 'unset'
+        nav.style.marginTop = "unset"
+        navList.style.flexDirection = "row";
+        nav.style.padding = "unset"
+        nav.style.borderTopLeftRadius = "unset"
+        nav.style.backgroundColor = 'unset';
+        nav.style.borderBottomLeftRadius = "unset"
+        nav.style.translate = 'unset';
+      }
+    }
+
+    closeHamburgerMenu.addEventListener("click", () => {
+      nav.style.visibility = 'hidden';
+      nav.style.translate = '200px';
+      nav.style.transition = "200ms ease-out translate"
+    })
+
+    navHamburgerStyles()
+    
+  
+    window.addEventListener("resize", () => navHamburgerStyles())
+  </script>
+</body>
+</html>

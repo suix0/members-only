@@ -6,11 +6,11 @@
   <title>Home</title>
   <link rel="stylesheet" href="/styles/output.css">
 </head>
-<body class="relative grid grid-cols-[2fr_600px_2fr] grid-rows-[50px_10px_1fr]">
+<body class="grid relative grid-cols-[1fr_600px_1fr] max-[932px]:grid-cols-[1fr_500px_1fr] max-[540px]:grid-cols-[1fr_300px_1fr] grid-rows-[50px_10px_1fr] gap-x-2">
   <%- include('../partials/header') %>
   <div class="flex flex-col items-center col-start-2 col-end-3 gap-2 row-start-3">
     <div class="w-full bg-gray-700 p-6 pb-4 pt-4 rounded-lg">
-      <p class="w-full bg-neutral-800 p-4 rounded-full hover:bg-neutral-700 cursor-pointer text-gray-300" id="triggerDialog" title="Click to create post">What's on your mind, <%= user.first_name %>?</p>
+      <p class="w-full bg-neutral-800 p-4 max-[686px]:text-xs rounded-full hover:bg-neutral-700 cursor-pointer text-gray-300" id="triggerDialog" title="Click to create post">What's on your mind, <%= user.first_name %>?</p>
     </div>
 
     <%# Message posts feed %>
@@ -20,55 +20,13 @@
   </div>
 
   <%# Add admin panel %>
+  
   <% if (locals.isAdmin) { %>
-    <section class="row-start-3 w-[80%] justify-self-center rounded-lg flex flex-col gap-2">
-      <div class="bg-gray-700 text-gray-300 rounded-lg p-4 flex justify-between">
-        <p>Total users:</p>
-        <% if (users !== null) { %>
-          <p><%= users.length%></p>
-        <% } else {%>
-          <p>0</p>
-        <% } %>
-      </div>
-      <div class="bg-gray-700 text-gray-300 rounded-lg p-4 flex justify-between">
-        <p>Total posts:</p>
-        <% if (userPosts !== null) { %>
-          <p><%= userPosts.length %></p>
-        <% } else {%>
-          <p>0</p>
-        <% } %>
-      </div>
-      <div class="bg-gray-700 text-gray-300 rounded-lg p-4">
-        <table class="w-full">
-          <caption class="text-lg">Users</caption>
-          <tr class="text-left border-b">
-            <th>Name</th>
-            <th>Username</th>
-            <th>Is Member</th>
-            <th>Is Admin</th>
-          </tr>
-          <% users.forEach(user => { %>
-           <tr>
-            <td class="pb-1"><%= user.first_name %> <%= user.last_name %></td>
-            <td><%= user.user_name %></td>
-            <% if (user.is_member) { %>
-              <td><%= user.is_member %></td>
-            <% } else {%>
-              <td>false</td>
-            <% } %>
-            <% if (user.is_admin) { %>
-              <td><%= user.is_admin %></td>
-            <% } else {%>
-              <td>false</td>
-            <% } %>
-           </tr>
-          <% }) %>
-        </table>
-      </div>
+    <section class="row-start-3 w-[90%] max-[1400px]:text-xs justify-self-center rounded-lg flex flex-col gap-2 max-[1080px]:hidden">
+      <%- include('adminPanel') %>
     </section>
-    
   <% } %>
-
+      
   <dialog class="m-auto rounded-lg bg-gray-700 text-neutral-300" id="post">
     <form action="/home/post" method="post" class="flex flex-col p-4 gap-4 items-center">
       <p>Create post</p>
@@ -85,13 +43,13 @@
     </form>
   </dialog>
 
-  <dialog class="m-auto p-4" id="admin">
+  <dialog class="m-auto p-4 bg-gray-800 rounded-lg" id="admin">
     <% if (locals.isAdmin) { %>
-     <p>You are already an admin</p>
+     <p class="text-neutral-300">You are already an admin</p>
      <button id="closeAdmin" class=" select-none p-1 w-full rounded-lg bg-gray-300 cursor-pointer mt-4">Close</button>
     <% } else {%>
     <form action="/home/becomeAdmin" method="post" class="flex flex-col gap-4">
-      <p>Becoming an admin means that you swear to be <br><span class="font-bold">responsible</span> of the authority you desire.</p>
+      <p class="text-neutral-300">Becoming an admin means that you swear to be <br><span class="font-bold">responsible</span> of the authority you desire.</p>
       <div class="flex flex-col gap-2">
         <button type="submit" class="select-none text-gray-300 bg-gray-700 p-2 rounded-lg cursor-pointer">
           Become an Admin
@@ -133,6 +91,55 @@
       e.preventDefault()
       adminDialog.close();
     })
+
+    const nav = document.querySelector("nav");
+    const navList = document.querySelector("#navList");
+    const hamburgerMenu = document.querySelector("#hamburgerMenu");
+    const closeHamburgerMenu = document.querySelector("#closeHamburgerMenu");
+
+    const navHamburgerStyles = () => {
+      if (window.innerWidth <= 650) {
+        nav.style.visibility = "hidden"
+        nav.style.position = 'absolute'
+        nav.style.right = '0';
+        nav.style.top = '0'
+        nav.style.marginTop = "2.5rem"
+        nav.style.padding = "1rem"
+        nav.style.backgroundColor = 'rgb(34, 40, 49)';
+        nav.style.borderTopLeftRadius = "8px"
+        nav.style.borderBottomLeftRadius = "8px"
+        nav.style.translate = '200px';
+        nav.style.transition = "200ms ease-out translate"
+        navList.style.flexDirection = "column";
+        hamburgerMenu.addEventListener("click", () => {
+          nav.style.visibility = 'visible'
+          nav.style.translate = '0';
+        })
+      } else {
+        nav.style.visibility = "visible";
+        nav.style.position = 'unset'
+        nav.style.right = 'unset';
+        nav.style.top = 'unset'
+        nav.style.marginTop = "unset"
+        navList.style.flexDirection = "row";
+        nav.style.padding = "unset"
+        nav.style.borderTopLeftRadius = "unset"
+        nav.style.backgroundColor = 'unset';
+        nav.style.borderBottomLeftRadius = "unset"
+        nav.style.translate = 'unset';
+      }
+    }
+
+    closeHamburgerMenu.addEventListener("click", () => {
+      nav.style.visibility = 'hidden';
+      nav.style.translate = '200px';
+      nav.style.transition = "200ms ease-out translate"
+    })
+
+    navHamburgerStyles()
+    
+  
+    window.addEventListener("resize", () => navHamburgerStyles())
   </script>
 </body>
 </html>
