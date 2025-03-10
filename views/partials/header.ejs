@@ -1,5 +1,5 @@
 <header class="col-start-1 col-end-4 w-full fixed flex justify-between items-center p-2 pt-2.5 pb-2.5 px-10 bg-gray-700 z-10">
-  <h1 class="italic font-bold text-2xl text-neutral-200 text-center">Members Only</h1>
+  <a class="italic font-bold text-2xl text-neutral-200 text-center" href="/home">Members Only</a>
   <a class="min-[650px]:hidden" id="hamburgerMenu">
     <img src="/svg/menu.svg" alt="Menu navigation icon" class="w-[24px]">
   </a>
@@ -8,23 +8,23 @@
       <img src="/svg/close.svg" alt="Menu navigation icon" class="w-[24px] mb-2">
     </a>
     <ul class="flex gap-4 text-neutral-200" id="navList">
-      <li>
+      <li class="max-[650px]:underline">
         <a href="/home/adminDashboard" class="min-[1080px]:hidden min-[1080px]:isolate z-10">
           Dashboard
         </a>
       </li>
-      <li>
+      <li class="max-[650px]:underline">
         <a href="/home">Home</a>
       </li>
-      <li>
+      <li class="max-[650px]:underline">
         <a href="/becomeMember">Membership</a>
       </li>
-      <li>
+      <li class="max-[650px]:underline">
         <a class="cursor-pointer" id="openAdmin">
           Admin
         </a>
       </li>
-      <li>
+      <li class="max-[650px]:underline">
         <a href="/logout">Log out</a>
       </li>
     </ul>
