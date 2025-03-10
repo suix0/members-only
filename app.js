@@ -7,6 +7,8 @@ const pgSession = require("connect-pg-simple")(session);
 const app = express();
 const indexRouter = require("./routes/indexRouter");
 const homeRouter = require("./routes/homeRouter");
+const customNotFound = require("./errors/404error");
+const { error } = require("node:console");
 
 require("dotenv").config();
 
@@ -32,6 +34,19 @@ require("./config/passport");
 
 app.use("/", indexRouter);
 app.use("/home", homeRouter);
+
+app.use((req, res, next) => {
+  throw new customNotFound("The page you are looking for can't be found");
+});
+
+app.use((err, req, res, next) => {
+  res
+    .status(err.statusCode || 500)
+    .render("errors/errorPage", {
+      error: err,
+      isAuth: req.user ? true : false,
+    });
+});
 
 const PORT = process.env.PORT || 5000;
 
