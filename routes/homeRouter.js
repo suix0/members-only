@@ -21,6 +21,11 @@ homeRouter.get(
   homeController.getDeletePost
 );
 
-homeRouter.get("/adminDashboard", homeController.getAdminDashboard);
+homeRouter.get(
+  "/adminDashboard",
+  authMiddleware.isAuth,
+  authMiddleware.isAdmin,
+  homeController.getAdminDashboard
+);
 
 module.exports = homeRouter;
